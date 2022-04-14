@@ -27,7 +27,7 @@ window.addEventListener('load', function () {
 
   btnCerrarSesion.addEventListener('click', function () {
     
-    const confirmar = confirmar("¿Desea cerrar sesión?");
+    let confirmar = confirm("¿Desea cerrar sesión?");
 
     if(confirmar){
       localStorage.clear();
@@ -54,7 +54,11 @@ window.addEventListener('load', function () {
 
     fetch(`${urlBase}/users/getMe`, settings)
       .then(response => response.json())
-      .then(data => console.log(data.firstName))
+      .then(data => {
+        console.log(data)
+        username.innerText = data.firstName;
+        username.style.textTransform = 'capitalize'
+      })
     
   };
   obtenerNombreUsuario()
